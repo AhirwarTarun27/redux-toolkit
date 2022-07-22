@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit/dist/createSlice';
+import { createSlice } from '@reduxjs/toolkit';
 
 const cartStore = createSlice({
   name: 'cart',
@@ -8,11 +8,11 @@ const cartStore = createSlice({
     showCart: false,
   },
   reducers: {
-    addToCart: (action, payload) => {
+    addToCart: (state, action) => {
       const newItem = action.payload;
 
       // check if item is already in cart
-      const existingItem = action.state.cartItems.find(
+      const existingItem = state.cartItems.find(
         (item) => item.id === newItem.id
       );
 
@@ -27,6 +27,7 @@ const cartStore = createSlice({
           totalPrice: newItem.price,
           name: newItem.name,
         });
+        state.totalQuantity++;
       }
     },
     removeFromCart: () => {},
