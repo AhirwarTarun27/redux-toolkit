@@ -4,6 +4,7 @@ import "./Cart.css";
 import { useSelector } from "react-redux";
 const CartItems = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
+
   console.log("cartItems:", cartItems);
   return (
     <div className="cart-container">
@@ -11,7 +12,13 @@ const CartItems = () => {
       <ul>
         {cartItems.map((item) => (
           <li key={item.id}>
-            <CartItem id={item.id} price={item.price} name={item.name} />
+            <CartItem
+              id={item.id}
+              quantity={item.quantity}
+              price={item.price}
+              name={item.name}
+              totalPrice={item.totalPrice}
+            />
           </li>
         ))}
       </ul>
